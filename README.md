@@ -1,1 +1,2 @@
-# nearcon-aurora
+# Velvet Capital
+- Your Automated Crypto Portfolio
