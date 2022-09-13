@@ -47,5 +47,17 @@
   "devDependencies": {
     "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
+  },
+  "description": "- Your Automated Crypto Portfolio",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Velvet-Capital/nearcon-aurora.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Velvet-Capital/nearcon-aurora/issues"
   }
 }
