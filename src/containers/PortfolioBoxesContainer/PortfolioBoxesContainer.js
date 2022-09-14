@@ -12,6 +12,7 @@ import VelvetCapitalLogo2 from "../../assets/img/velvetcapitallogo2.svg"
 import BluechipAssetsImg from "../../assets/img/bluechipassets.png"
 import Best5AssetImg from "../../assets/img/best5assetimg.png"
 import DefiAssetImg from "../../assets/img/defiassetimg.png"
+import Covalant from "../../lib/covalent";
 
 import {abi as indexSwapAbi } from "../../utils/abi/IndexSwapAbi"
 import {abi as iercAbi } from "../../utils/abi/iercAbi"
@@ -29,7 +30,8 @@ const PortfolioBoxesContainer = () => {
 
     const [top5Tokens, setTop5Tokens] = useState(null)
     const [best5Tokens, setBest5Tokens] = useState(null)
-
+    const [numberHolderTop5, setNumberHolderTop5] = useState(null)
+    const [balanceHolderTop5,setbalanceHolderTop5] = useState(null)
     const {
         currentAccount,
         isWalletConnected,
@@ -56,7 +58,8 @@ const PortfolioBoxesContainer = () => {
 
     async function getUserTokenBalance(accountAddress) {
         //call this function only if wallet is connected
-        let contractAddress
+        let contractAddress;
+        let chainID;
         switch(currentChain) {
             case "POLYGON":
                 contractAddress = constants.TOP5_CONTRACT_ADDRESS_POLYGON
@@ -69,7 +72,12 @@ const PortfolioBoxesContainer = () => {
                 break
             case "CELO":
                 // contractAddress
-                break
+            break;
+            case "AUORA":
+                // contractAddress
+                contractAddress = constants.TOP5_CONTRACT_ADDRESS_AUORA;
+                chainID= 1313161554;
+                break;
             default:
                 break
         }
@@ -95,6 +103,12 @@ const PortfolioBoxesContainer = () => {
             TOP5: top5Balance,
             BEST5: best5Balance,
         })
+        const holderDefi= Covalant.getTokenHolders(chainID,contractAddress);
+        setNumberHolderTop5(holderDefi);
+        const balanceTop5= Covalant.getTokenBalances(chainID,contractAddress);
+
+        setbalanceHolderTop5(balanceTop5);
+    }
     }
 
     async function getTokensAddressAndWeight() {
@@ -113,7 +127,10 @@ const PortfolioBoxesContainer = () => {
                     break
                 case "CELO":
                     // contractAddress
-                    break
+                break;
+                case "auora":
+                    contractAddress = constants.TOP5_CONTRACT_ADDRESS_AUORA
+                break
                 default:
                     break
             }
@@ -208,7 +225,7 @@ const PortfolioBoxesContainer = () => {
                     tippyContent="Top 5 DeFi cryptocurrencies by total market capitalization excluding stablecoins, equally weighted, rebalanced weekly"
                     assetsImg={DefiAssetImg}
                     indexTokenBalance={userIndexTokensBalance["TOP5"]}
-                    numberOfInvestors="10,534"
+                    numberOfInvestors={numberHolderTop5}
                     currentBnbPrice={currentBnbPrice}
                     tokens={top5Tokens}
                 />
@@ -229,8 +246,7 @@ const PortfolioBoxesContainer = () => {
                 />
        
             </>
-        </div>
-        
+        </div>       
     )
 }
 

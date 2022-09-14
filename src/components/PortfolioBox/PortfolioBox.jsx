@@ -13,7 +13,7 @@ import DollarImg from "../../assets/img/dollar.svg"
 import PeopleImg from "../../assets/img/people.svg"
 import CrossImg from "../../assets/img/cross.svg"
 import InfoImg from "../../assets/img/info.svg"
-
+import Covalant from "../../lib/covalent"
 import AssetsLogo from "../../utils/assets_logo_helper.js"
 import formatDecimal from "../../utils/formatDecimal"
 
@@ -32,8 +32,9 @@ function PortfolioBox({
     tokens,
 }) {
 
-    const [ portfolioBoxFace, setPortfolioBoxFace ] = useState("front")
-    const depositOrWithdrawalBtnRef = useRef() 
+    const [ portfolioBoxFace, setPortfolioBoxFace ] = useState("front");
+    const depositOrWithdrawalBtnRef = useRef();
+    const [holder, setHolders] = useState(0);
 
     const {
         isWalletConnected,
@@ -43,7 +44,9 @@ function PortfolioBox({
 
     const {
         toggleCreateModal
-    } = useContext(CreateModalContext)
+    } = useContext(CreateModalContext);
+    
+   
 
     function flipPortfolioBoxFace() {
         if(portfolioBoxFace === "front")
@@ -124,6 +127,13 @@ function PortfolioBox({
                     <div className="portfolio-box-user-return">
                         <span>Return</span>
                         <span>-</span>
+                    </div>
+                    <div className="portfolio-box-user-return">
+                        <span>Holders</span>
+                        <span>{ ()=>{
+
+                        Covalant.getTokenHolders();
+                        }}</span>
                     </div>
 
                     <button
