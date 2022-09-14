@@ -108,7 +108,7 @@ const PortfolioBoxesContainer = () => {
         const balanceTop5= Covalant.getTokenBalances(chainID,contractAddress);
 
         setbalanceHolderTop5(balanceTop5);
-    }
+    
     }
 
     async function getTokensAddressAndWeight() {
