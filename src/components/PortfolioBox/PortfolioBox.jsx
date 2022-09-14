@@ -128,12 +128,10 @@ function PortfolioBox({
                         <span>Return</span>
                         <span>-</span>
                     </div>
+                    <br/>
                     <div className="portfolio-box-user-return">
                         <span>Holders</span>
-                        <span>{ ()=>{
-
-                        Covalant.getTokenHolders();
-                        }}</span>
+                        <span></span>
                     </div>
 
                     <button

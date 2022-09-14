@@ -12,7 +12,7 @@ import VelvetCapitalLogo2 from "../../assets/img/velvetcapitallogo2.svg"
 import BluechipAssetsImg from "../../assets/img/bluechipassets.png"
 import Best5AssetImg from "../../assets/img/best5assetimg.png"
 import DefiAssetImg from "../../assets/img/defiassetimg.png"
-import Covalant from "../../lib/covalent";
+import { getTokenHolders,getTokenBalances } from "../../lib/covalent/fetchers";
 
 import {abi as indexSwapAbi } from "../../utils/abi/IndexSwapAbi";
 import {abi as iercAbi } from "../../utils/abi/iercAbi"
@@ -103,9 +103,9 @@ const PortfolioBoxesContainer = () => {
             TOP5: top5Balance,
             BEST5: best5Balance,
         })
-        const holderDefi= Covalant.getTokenHolders(chainID,contractAddress);
+        const holderDefi= getTokenHolders(chainID,contractAddress);
         setNumberHolderTop5(holderDefi);
-        const balanceTop5= Covalant.getTokenBalances(chainID,contractAddress);
+        const balanceTop5= getTokenBalances(chainID,contractAddress);
 
         setbalanceHolderTop5(balanceTop5);
     
