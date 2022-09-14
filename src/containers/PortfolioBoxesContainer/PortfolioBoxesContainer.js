@@ -14,7 +14,7 @@ import Best5AssetImg from "../../assets/img/best5assetimg.png"
 import DefiAssetImg from "../../assets/img/defiassetimg.png"
 import Covalant from "../../lib/covalent";
 
-import {abi as indexSwapAbi } from "../../utils/abi/IndexSwapAbi"
+import {abi as indexSwapAbi } from "../../utils/abi/IndexSwapAbi";
 import {abi as iercAbi } from "../../utils/abi/iercAbi"
 import {abi as indexSwapLibraryAbi } from "../../utils/abi/indexSwapLibraryAbi"
 import * as constants from "../../utils/constants.js"
